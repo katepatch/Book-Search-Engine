@@ -42,7 +42,7 @@ const SavedBooks = () => {
     return <h2>LOADING...</h2>;
   }
 
-};
+  
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   
