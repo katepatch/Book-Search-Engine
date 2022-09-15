@@ -4,6 +4,18 @@
 
 ## Description
 
+In this project I took a Google Books API search engine that was initially built with RESTful API and refactored into a GraphQL API using the Apollo Server.  This was built using the MERN stack.  React as the front end, MongoDB as the database, and Node.js/Express.js.
+
+Users of this app can sign up, login, and search for books.  Find a book that you like you can save it to your account.  Tired of that book?  Then remove it from your account with ease.
+
+## Table of Contents
+
+[User Story](#user-story)</br>
+[Project Criteria](#project-criteria)</br>
+[Installation](#installation)</br>
+[Preview](#preview)</br>
+[Questions](#questions)
+
 ## User Story
 
 AS AN avid reader</br>
@@ -41,3 +53,16 @@ WHEN I click on the Remove button on a book</br>
 THEN that book is deleted from my saved books list</br>
 WHEN I click on the Logout button</br>
 THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button
+
+## Installation
+
+To install this project please clone the repository</br>
+After cloning, in your terminal run `npm i` to install packages
+
+## Preview
+
+## Questions
+
+If you have questions regarding this project or others you can reach me by:</br>
+Email: kate.epatch@gmail.com</br>
+Github: [katepatch](https://github.com/katepatch)
