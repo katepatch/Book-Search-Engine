@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/client'
 import { SAVE_BOOK } from '../utils/mutations';
@@ -69,7 +69,7 @@ const SearchBooks = () => {
     }
 
     try {
-      const { data } = await saveBook({
+      const { data } = await saveBook({ //data never used?
         variables: { input: bookInput }
       });
 
