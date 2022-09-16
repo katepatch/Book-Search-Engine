@@ -31,7 +31,13 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   });
 }
 
-
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/BookSearch',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+);
 
 
 db.once('open', () => {
