@@ -16,7 +16,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-server.applyMiddleware({ app });
+// server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,15 +24,25 @@ app.use(express.json());
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../../client/build'));
+  app.use(express.static('../client/build'));
   //app.use(routes);
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '../../client/build/index.html'));
+    res.sendFile(path.join(__dirname + '../client/build/index.html'));
  });
 }
 
 
-
+const startApolloServer = async (typeDefs, resolvers) => {
+  await server.start();
+  server.applyMiddleware({ app });
+  
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    })
+  })
+  };
 // mongoose.connect(
 //   process.env.MONGODB_URI || 'mongodb://localhost:27017/BookSearch',
 //   {
@@ -42,11 +52,11 @@ if (process.env.NODE_ENV === 'production') {
 // );
 
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  })
-});
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log(`API server running on port ${PORT}!`);
+//     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+//   })
+// });
 
-//startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers);
