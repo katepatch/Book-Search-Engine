@@ -28,9 +28,8 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   //app.use(routes);
 }
 app.get('*', (req, res) => {
-    const index = path.join(__dirname, 'build', 'index.html');
-    res.sendFile(index);
-});
+    res.sendFile(path.join(__dirname + '../client/build/index.html'));
+ });
 
 
 // mongoose.connect(
