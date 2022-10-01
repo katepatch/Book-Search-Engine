@@ -13,6 +13,14 @@ const LoginForm = () => {
 
   const [loginUser, { error }] = useMutation(LOGIN_USER); //error is never used?
 
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -21,15 +29,20 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     try {
       const { data } = await loginUser({
-        variables: {...userFormData}
+        variables: {...userFormData},
       });
-  
+      console.log(data);
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
     }
 
     setUserFormData({
