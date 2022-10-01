@@ -15,29 +15,39 @@ const SignupForm = () => {
 
   const [addUser, { error }] = useMutation(ADD_USER); //error never used?
 
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+
   const handleFormSubmit = async (event) => {
     event.preventDefault(); 
 
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     try {
       const { data } = await addUser({
-        variables: {...userFormData}
+        variables: {...userFormData},
       });
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user } = await response.json();
-      // console.log(user);
+      console.log(data);
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
+      
     }
 
     setUserFormData({
