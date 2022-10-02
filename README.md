@@ -61,6 +61,13 @@ After cloning, in your terminal run `npm i` to install packages
 
 ## Preview
 
+Deployed with [Heroku](https://rocky-sea-41722.herokuapp.com/)
+![screenshot](./images/bookSearchMain.png)
+When you open the app this is the page you first see.
+![screenshot](./images/bookSearchForm.png)
+You can click on the Login/Sign Up form to login.
+![screenshot](./images/bookSearchResults.png)
+Viewing search results for book title.
 ## Questions
 
 If you have questions regarding this project or others you can reach me by:</br>
